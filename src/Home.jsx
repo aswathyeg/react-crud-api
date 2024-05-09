@@ -3,8 +3,11 @@ import {users} from '../db.json'
 import { Table,Button } from 'react-bootstrap'
 const Home = () => {
   return (
-    <div>
-     <Table striped gap-2 size='lg'>
+    <div className='d-flex flex-column justify-content-center align-items-center bg-light vh-100'>
+      <h1>List of Users</h1>
+      <div className='w-75 rounded bg-white border shadow p-4'>
+
+      <Table>
       <thead>
         <tr>
           <th>
@@ -39,13 +42,9 @@ const Home = () => {
     </tr>
   </tbody>)}
       
-{/* {users.map((items)=>{return(
-  <p>{items.users.name}</p>
-)
 
-})} */}
 </Table> 
-
+</div>
     </div>
   )
 }
