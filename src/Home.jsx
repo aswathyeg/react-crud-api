@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react'
-import {users} from '../db.json'
-import { Table,Button } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 const Home = () => {
   const[data,setData]=useState([])
 
@@ -12,11 +12,14 @@ const Home = () => {
 
   
   },[])
+  
   return (
     <div className='d-flex flex-column justify-content-center align-items-center bg-light vh-100'>
       <h1>List of Users</h1>
       <div className='w-75 rounded bg-white border shadow p-4'>
-
+<div className='d-flex justify-content-end'>
+  <Link to ="/create" className="btn btn-success">Add</Link>
+</div>
       <Table className='table table-striped'>
       <thead>
         <tr>
@@ -66,9 +69,9 @@ const Home = () => {
       </td>
       <td>
         
-      <Button className='btn btn-sm btn-info me-2' >Edit</Button>
-      <Button className='btn btn-sm btn-primary me-2' >Read</Button>
-      <Button className='btn btn-sm btn-danger me-2' >Delete</Button>
+      <Link to ='/edit' className='btn btn-sm btn-info me-2' >Edit</Link>
+      <Link to ={`/read/${items.id}`} className='btn btn-sm btn-primary me-2' >Read</Link>
+      <Link to='/delete' className='btn btn-sm btn-danger me-2' >Delete</Link>
       </td>
     </tr>
   </tbody>)}
