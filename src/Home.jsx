@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react'
-import { Table } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 const Home = () => {
@@ -12,7 +12,16 @@ const Home = () => {
 
   
   },[])
-  
+  const handleDelete=(id)=>{
+    const confirm=window.confirm(' Would you like to Delete ? ')
+    if (confirm){
+      axios.delete('http://localhost:3000/users/'+id)
+      .then(res=>{
+        location.reload();
+      }).catch(err=>console.log(err))
+    }
+
+  }
   return (
     <div className='d-flex flex-column justify-content-center align-items-center bg-light vh-100'>
       <h1>List of Users</h1>
@@ -68,10 +77,10 @@ const Home = () => {
 {items.website}
       </td>
       <td>
-        
-      <Link to ='/edit' className='btn btn-sm btn-info me-2' >Edit</Link>
       <Link to ={`/read/${items.id}`} className='btn btn-sm btn-primary me-2' >Read</Link>
-      <Link to='/delete' className='btn btn-sm btn-danger me-2' >Delete</Link>
+      <Link to ={`/update/${items.id}`} className='btn btn-sm btn-info me-2' >Edit</Link>
+    
+      <Button onClick={e=>handleDelete(items.id)} className='btn btn-sm btn-danger me-2' >Delete</Button>
       </td>
     </tr>
   </tbody>)}
